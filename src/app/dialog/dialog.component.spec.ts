@@ -17,19 +17,19 @@ describe('DialogComponent', () => {
   beforeEach(() => spectator = createComponent());
 
   it('initial', () => {
-    const div = spectator.query('span');
-    expect(div).toHaveText('Hello, John Doe');
+    const span = spectator.query('span');
+    expect(span).toHaveText('Hello, John Doe');
   });
 
   it('should be Barry Boe when manipulating data and detectChanges (but it fails, because it is John Doe)', () => {
     spectator.component.data.name = 'Barry Boe';
     spectator.detectChanges();
-    const div = spectator.query('span');
-    expect(div).toHaveText('Hello, Barry Boe');
+    const span = spectator.query('span');
+    expect(span).toHaveText('Hello, Barry Boe');
   });
 
   it('should be John Doe again (but it fails, because it is Barry Boe)', () => {
-    const div = spectator.query('span');
-    expect(div).toHaveText('Hello, John Doe');
+    const span = spectator.query('span');
+    expect(span).toHaveText('Hello, John Doe');
   });
 });
