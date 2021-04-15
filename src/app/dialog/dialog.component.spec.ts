@@ -1,6 +1,6 @@
 import { DialogComponent } from './dialog.component';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {createComponentFactory, Spectator} from '@ngneat/spectator';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 describe('DialogComponent', () => {
 
