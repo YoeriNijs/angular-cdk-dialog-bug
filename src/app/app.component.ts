@@ -1,19 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
-import {DialogComponent} from './dialog/dialog.component';
+import {DataService} from './data.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-component',
+  template: `<span>Hello, {{ name }}</span>`,
+  styleUrls: []
 })
 export class AppComponent implements OnInit {
 
-  constructor(private dialogService: MatDialog) {}
+  toggle = false;
+  name: string;
+
+  constructor(public data: DataService) {}
 
   ngOnInit(): void {
-    this.dialogService.open(DialogComponent, { data: { name: 'Hello' }})
-      .afterClosed()
-      .subscribe(res => console.log(`closed with ${res}`));
+    this.name = this.data.name;
   }
 }

@@ -1,20 +1,19 @@
-import { DialogComponent } from './dialog.component';
 import {createComponentFactory, Spectator} from '@ngneat/spectator';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {DataService} from './data.service';
+import {AppComponent} from './app.component';
 
-describe('DialogComponent', () => {
+describe('AppComponent', () => {
 
-  let spectator: Spectator<DialogComponent>;
+  let spectator: Spectator<AppComponent>;
 
   const createComponent = createComponentFactory({
-    component: DialogComponent,
-    mocks: [MatDialogRef],
-    providers: [
-      { provide: MAT_DIALOG_DATA, useValue: { name: 'John Doe' }}
-    ]
+    component: AppComponent,
+    providers: [{provide: DataService, useValue: {name: 'John Doe'}}]
   });
 
-  beforeEach(() => spectator = createComponent());
+  beforeEach(() => {
+    spectator = createComponent();
+  });
 
   it('initial', () => {
     const span = spectator.query('span');
@@ -23,6 +22,7 @@ describe('DialogComponent', () => {
 
   it('should be Barry Boe when manipulating data and detectChanges (but it fails, because it is John Doe)', () => {
     spectator.component.data.name = 'Barry Boe';
+    spectator.component.ngOnInit(); // this is a anti-pattern.
     spectator.detectChanges();
     const span = spectator.query('span');
     expect(span).toHaveText('Hello, Barry Boe');

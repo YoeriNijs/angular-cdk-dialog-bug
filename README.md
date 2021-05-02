@@ -1,5 +1,8 @@
 # NgBugExample
 
+This repo is to demonstrate a possible bug in ngSpector and discussed in [this issue](https://github.com/ngneat/spectator/issues/429)
+While running the tests make sure to disable running them in random order.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
 
 ## Development server
